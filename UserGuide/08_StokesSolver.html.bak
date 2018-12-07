@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Louis Moresi">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>StokesSolver - The Underworld Geodynamics Modelling Code</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "StokesSolver";
+    var mkdocs_page_input_path = "UserGuide/08_StokesSolver.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="icon icon-home"> The Underworld Geodynamics Modelling Code</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../index.html">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Geodynamics.html">Geodynamics</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Numerics.html">Numerical Methods</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Practice.html">Practical Matters</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User's Manual</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="01_GettingStarted.html">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="02_TheMesh.html">TheMesh</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="03_Swarms.html">Swarms</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="04_Functions.html">Functions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="05_Systems.html">Systems</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="06_Utilities.html">Utilities</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="07_Visualisation.html">Visualisation</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="08_StokesSolver.html">StokesSolver</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#stokes-solver">Stokes Solver</a></li>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Underworld Resources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="http://www.underworldcode.org">UW2 website</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://github.com/underworldcode/underworld2">UW2 on Github</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://underworld2.readthedocs.io/en/latest/underworld.html">UW2 API docs</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://doi.org/10.5281/zenodo.1436039">Zenodo</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="mailto:anyone@underworldcode.org">Email us</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">The Underworld Geodynamics Modelling Code</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>User's Manual &raquo;</li>
+        
+      
+    
+    <li>StokesSolver</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="stokes-solver">Stokes Solver</h1>
+<p>We want to solve the following Stokes block system.
+\[
+\begin{bmatrix}
+ K &amp; G \
+ G^T &amp; C
+\end{bmatrix}
+\begin{bmatrix}
+  u\
+  p
+\end{bmatrix}
+=
+\begin{bmatrix}
+ f\ 
+ h
+\end{bmatrix}.
+\]</p>
+<p>If we apply Gaussian elimination to the above as a 2x2 block matrix system
+we can write this as:</p>
+<p>\[
+\begin{bmatrix}
+  K &amp; G\
+  0 &amp; S
+\end{bmatrix}
+\begin{bmatrix}
+  u\
+  p
+\end{bmatrix}
+=
+\begin{bmatrix}
+ f\ 
+ \hat{h}
+\end{bmatrix},
+\]</p>
+<p>where <span><span class="MathJax_Preview">S=G^{T}K^{-1}G-C</span><script type="math/tex">S=G^{T}K^{-1}G-C</script></span> is the Schur complement and <span><span class="MathJax_Preview">\hat{h}=G^{T}K^{-1}f -h</span><script type="math/tex">\hat{h}=G^{T}K^{-1}f -h</script></span>.</p>
+<p>This system is now solved first for the pressure using the Schur complement matrix, <span><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span>. Then a backsolve for the
+velocity gives the complete solution.</p>
+<p>Note that wherever <span><span class="MathJax_Preview">K^{-1}</span><script type="math/tex">K^{-1}</script></span> appears, the inverse is never explicitly calculated but is achieved via
+a <a href="http://www.mcs.anl.gov/petsc/">PETSc</a> solve method. While solving for the pressure, there are necessarily solves using <span><span class="MathJax_Preview">K</span><script type="math/tex">K</script></span> inside of the matrix <span><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span>.
+We often refer to these as 'inner' solves.</p>
+<p>Basic usage of the Stokes solver class involves being able to easily set up the inner solves in a few different ways
+(Setting up the pressure solve is more advanced).</p>
+<p>To illustrate some basic usage let's set up a simple problem to solve.</p>
+<pre data-executable>import underworld as uw
+import math
+from underworld import function as fn
+
+res=128
+mesh = uw.mesh.FeMesh_Cartesian(&quot;Q1/DQ0&quot;, (res,res), (0.,0.), (1.,1.))
+velocityField = mesh.add_variable(2)
+velocityField.data[:] = (0.,0.)
+
+pressureField = mesh.subMesh.add_variable(1)
+pressureField.data[:] = 0.
+
+# Freeslip bc's
+IWalls = mesh.specialSets[&quot;MinI_VertexSet&quot;] + mesh.specialSets[&quot;MaxI_VertexSet&quot;]
+JWalls = mesh.specialSets[&quot;MinJ_VertexSet&quot;] + mesh.specialSets[&quot;MaxJ_VertexSet&quot;]
+freeslip = uw.conditions.DirichletCondition(velocityField, (IWalls, JWalls))
+# We are going to make use of one of the existing analytic solutions so that we may easily
+# obtain functions for a viscosity profile and forcing terms.
+# Exact solution solCx with defaults
+sol = fn.analytic.SolCx()
+stokesSystem = uw.systems.Stokes(velocityField,pressureField,sol.fn_viscosity,sol.fn_bodyforce,conditions=freeslip)
+
+</pre>
+
+<p>Now we create a solver.
+The Solver class will automatically return a Stokes solver given a Stokes system.</p>
+<pre data-executable>solver=uw.systems.Solver(stokesSystem)
+</pre>
+
+<p>The Stokes solver will use multigrid as a preconditioner along with PETSc's
+'fgmres' Krylov method by default for the 'inner' solve.</p>
+<p>Let's run the solver now.</p>
+<pre data-executable>solver.solve()
+</pre>
+
+<p>Now let's set up the inner solve to do a direct solve (this will not work in parallel).</p>
+<pre data-executable>solver.set_inner_method(&quot;lu&quot;)
+</pre>
+
+<pre data-executable>solver.solve()
+</pre>
+
+<p>Let's run underworld's help function on the solver.configure function.</p>
+<pre data-executable>help(solver.set_inner_method)
+</pre>
+
+<pre>Help on method set_inner_method in module underworld.systems._bsscr:
+
+set_inner_method(self, solve_type='mg') method of underworld.systems._bsscr.StokesSolver instance
+    Configure velocity/inner solver (A11 PETSc prefix).
+
+    solve_type can be one of:
+
+    mg          : Geometric multigrid (default).
+    mumps       : MUMPS parallel direct solver.
+    superludist : SuperLU parallel direct solver.
+    superlu     : SuperLU direct solver (serial only).
+    lu          : LU direct solver (serial only).
+</pre>
+<p>We can see all the of the options that are configured in the solver using the <code>list()</code> functions for each component of the solver. These are the most useful ones.</p>
+<pre data-executable>solver.options.main.list()  # System level options
+print( &quot;---&quot; )
+solver.options.scr.list()   # Specifics for the schur complement solve
+print( &quot;---&quot; )
+solver.options.A11.list()   # Specifics for the inner (velocity) solve
+print( &quot;---&quot; )
+solver.options.mg.list()    # Options relevant to multigrid (if chosen)
+
+</pre>
+
+<pre>('remove_constant_pressure_null_space', False)
+('ksp_k2_type', 'NULL')
+('change_backsolve', False)
+('penalty', 0.0)
+('pc_type', 'none')
+('force_correction', True)
+('k_scale_only', True)
+('Q22_pc_type', 'uw')
+('change_A11rhspresolve', False)
+('ksp_type', 'bsscr')
+('rescale_equations', False)
+('restore_K', True)
+---
+('ksp_type', 'fgmres')
+('ksp_rtol', 1e-05)
+---
+('pc_type', 'lu')
+('_mg_active', False)
+('ksp_type', 'preonly')
+---
+('active', False)
+('levels', 8)
+</pre>
+<p>To learn more about the possible options, you can first take a look at </p>
+<pre>uw.help(solver.options.A11) # for example
+</pre>
+
+<p>The options are cryptic because they follow the conventions established by <code>PETSc</code> which we use for the linear algebra and we allow you to pass any valid option through to that system. To understand this better, you will have to look at the <a href="www.mcs.anl.gov/petsc/documentation/">Petsc documentation</a>. To begin with, the examples in this notebook should be ok to get going. </p>
+<pre data-executable>help(solver.options.A11)
+</pre>
+
+<pre>Help on Options in module underworld.systems._options object:
+
+class Options(__builtin__.object)
+ |  Set PETSc options on this to pass along to PETSc KSPs
+ |  
+ |  ksp_type = &lt;fgmres&gt;    : Krylov method
+ |  ksp_rtol = &lt;1e-05&gt;     : Relative decrease in residual norm
+ |  pc_type  = &lt;sor&gt;       : Preconditioner type
+ |  ksp_view = 'ascii'     : Print the ksp data structure at the end of the system solution
+ |  ksp_converged_reason = 'ascii' : Print reason for converged or diverged solve
+ |  ksp_monitor = &lt;stdout&gt; : Monitor preconditioned residual norm
+ |  
+ |  for further options see PETSc manual or set help on "options.main"
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self)
+ |  
+ |  help(self)
+ |  
+ |  list(self)
+ |      List options.
+ |  
+ |  reset(self)
+ |      Reset values to initial defaults.
+ |  
+ |  set_lu(self)
+ |      Set up options for LU serial solve.
+ |  
+ |  set_mumps(self, pc_type='lu')
+ |      Set up options for MUMPS parallel solve.
+ |      pc_type = "lu" or "cholesky"
+ |      
+ |      Use ./configure --download-mumps --download-scalapack --download-parmetis --download-metis --download-ptscotch
+ |      to have PETSc installed with MUMPS
+ |  
+ |  set_superlu(self)
+ |      Set up options for SuperLU serial solve.
+ |      Use ./configure --download-superlu to have PETSc installed with SuperLU
+ |  
+ |  set_superludist(self)
+ |      Set up options for SuperLU parallel solve.
+ |      Use ./configure --download-superlu_dist --download-parmetis --download-metis --download-ptscotch
+ |      to have PETSc installed with SuperLU_DIST
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+</pre>
+<p>A useful trick is to be able to imitate the classic <em>"penalty method"</em> which can be very efficient with modest-sized (2D) problems.  </p>
+<p>In the penalty method, we add a term to the weak form of the Stokes equation which penalises <span><span class="MathJax_Preview">\lambda | \nabla \cdot \mathbf{u}| &gt; 0</span><script type="math/tex">\lambda | \nabla \cdot \mathbf{u}| > 0</script></span> and where <span><span class="MathJax_Preview">\lambda</span><script type="math/tex">\lambda</script></span> is a sufficiently large constant to enforce the constraint. Typically <span><span class="MathJax_Preview">10^7</span><script type="math/tex">10^7</script></span> is considered sufficient. </p>
+<p>The problem with this method is that the condition number of the system is severely compromised by adding the penalty term and standard iterative methods do not work well. </p>
+<p>Our solvers have been configured with the penalty term and, for sufficiently robust choices of the inner solver, this can help solve problems faster (by improving pressure convergence). </p>
+<p>An indestructible solver like <code>lu</code> or <code>mumps</code> (Mumps is a direct solve that will work in parallel) can use very large penalties. Hence we can recreate the penalty method as follows (though it still follows the pattern of the Schur complement solver, while the classical method takes some shortcuts).</p>
+<pre data-executable>solver.set_inner_method(&quot;mumps&quot;)
+solver.options.scr.ksp_type=&quot;cg&quot;
+solver.set_penalty(1.0e7)
+solver.solve()
+solver.print_stats()
+</pre>
+
+<pre>[1;35m
+
+Pressure iterations:   0
+Velocity iterations:   0 (presolve)      
+Velocity iterations:   0 (pressure solve)
+Velocity iterations:   0 (backsolve)     
+Velocity iterations:   0 (total solve)
+
+SCR RHS  solve time: 9.3489e-03
+Pressure solve time: 3.6509e-03
+Velocity solve time: 7.2331e-03 (backsolve)
+Total solve time   : 9.9900e-02
+
+Velocity solution min/max: 0.0000e+00/0.0000e+00
+Pressure solution min/max: 0.0000e+00/0.0000e+00
+
+[00m
+</pre>
+<p>Now let's go back to using multigrid. We can use a penalty here too, but the gigantic numbers won't work.</p>
+<pre data-executable>solver.set_inner_method(&quot;mg&quot;)
+solver.set_penalty(1.0)
+solver.solve()
+solver.print_stats()
+</pre>
+
+<pre>[1;35m
+
+Pressure iterations:   6
+Velocity iterations:   6 (presolve)      
+Velocity iterations:  30 (pressure solve)
+Velocity iterations:   5 (backsolve)     
+Velocity iterations:  41 (total solve)
+
+SCR RHS  solve time: 7.7661e-02
+Pressure solve time: 1.7966e-01
+Velocity solve time: 6.2589e-02 (backsolve)
+Total solve time   : 4.1504e-01
+
+Velocity solution min/max: 0.0000e+00/0.0000e+00
+Pressure solution min/max: 0.0000e+00/0.0000e+00
+
+[00m
+</pre>
+<p>Let's run help on the solver itself. The whole thing is reasonably well documented and help works for all the subcomponents.</p>
+<pre data-executable>help(solver)
+</pre>
+
+<pre>Help on StokesSolver in module underworld.systems._bsscr object:
+
+class StokesSolver(underworld._stgermain.StgCompoundComponent)
+ |  The Block Stokes Schur Complement Solver:
+ |  This solves the saddle-point system
+ |  
+ |  .. math::
+ |      \begin{bmatrix} K &amp; G \\ G^T &amp; C \end{bmatrix} \begin{bmatrix} u \\ p \end{bmatrix} = \begin{bmatrix}f \\ h \end{bmatrix}
+ |  
+ |  via a Schur complement method.
+ |  
+ |  We first solve:
+ |  
+ |  .. math::
+ |      S p= G^T  K^{-1} f - h,
+ |     :label: a
+ |  
+ |  where :math:`S = G^T K^{-1} G-C`
+ |  
+ |  Then we backsolve for the velocity:
+ |  
+ |  .. math::
+ |      K u = f - G p.
+ |     :label: b
+ |  
+ |  The effect of :math:`K^{-1}` in :eq:`a` is obtained via a KSPSolve in PETSc.
+ |  This has the prefix 'A11' (often called the 'inner' solve)
+ |  
+ |  The solve in :eq:`a` for the pressure has prefix 'scr'.
+ |  
+ |  Assuming the returned solver is called 'solver', it is possible to configure
+ |  these solves individually via the `solver.options.A11` and
+ |  `solver.options.scr` dictionaries.
+ |  
+ |  Try uw.help(solver.options.A11) for some details.
+ |  
+ |  Common configurations are provided via the
+ |  solver.set_inner_method() function.
+ |  
+ |  solver.set_inner_method("mg") sets up a multigrid solve for the inner solve. This is the default.
+ |  solver.set_inner_method("mumps") will set up a parallel direct solve on the inner solve.
+ |  solver.set_inner_method("lu") will set up a serial direct solve on the inner solve.
+ |  
+ |  uw.help(solver.set_inner_method) for more.
+ |  
+ |  For more advanced configurations use the
+ |  solver.options.A11/scr dictionaries directly.
+ |  
+ |  uw.help(solver.options) to see more.
+ |  
+ |  Method resolution order:
+ |      StokesSolver
+ |      underworld._stgermain.StgCompoundComponent
+ |      underworld._stgermain.StgClass
+ |      underworld._stgermain.LeftOverParamsChecker
+ |      __builtin__.object
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, stokesSLE, **kwargs)
+ |  
+ |  get_nonLinearStats(self)
+ |  
+ |  get_stats(self)
+ |  
+ |  print_stats(self)
+ |  
+ |  set_inner_method(self, solve_type='mg')
+ |      Configure velocity/inner solver (A11 PETSc prefix).
+ |      
+ |      solve_type can be one of:
+ |      
+ |      mg          : Geometric multigrid (default).
+ |      mumps       : MUMPS parallel direct solver.
+ |      superludist : SuperLU parallel direct solver.
+ |      superlu     : SuperLU direct solver (serial only).
+ |      lu          : LU direct solver (serial only).
+ |  
+ |  set_inner_rtol(self, rtol)
+ |  
+ |  set_mg_levels(self, levels)
+ |      Set the number of multigrid levels manually.
+ |      It is set automatically by default.
+ |  
+ |  set_outer_rtol(self, rtol)
+ |  
+ |  set_penalty(self, penalty)
+ |      By setting the penalty, the Augmented Lagrangian Method is used as the solve.
+ |      This method is not recommended for normal use as there is additional memory and cpu overhead.
+ |      This method can often help improve convergence issues for problems with large viscosity
+ |      contrasts that are having trouble converging.
+ |      
+ |      A penalty of roughly 0.1 of the maximum viscosity contrast is not a bad place to start as a guess. (check notes/paper)
+ |  
+ |  solve(self, nonLinearIterate=None, nonLinearTolerance=0.01, nonLinearKillNonConvergent=False, nonLinearMaxIterations=500, callback_post_solve=None, print_stats=False, reinitialise=True, fpwarning=True, petscwarning=True, **kwargs)
+ |      Solve the stokes system
+ |      
+ |      Parameters
+ |      ----------
+ |      nonLinearIterate: bool
+ |          True will perform non linear iterations iterations, False (or 0) will not
+ |      
+ |      nonLinearTolerance: float, Default=1.0e-2
+ |          Relative tolerance criterion for the change in the velocity field
+ |      
+ |      nonLinearMaxIterations: int, Default=500
+ |          Maximum number of non linear iteration to perform
+ |      
+ |      callback_post_sovle: func, Default=None
+ |          Optional callback function to be performed at the end of a linear solve iteration.
+ |          Commonly this will be used to perform operations between non linear iterations, for example,
+ |          calibrating the pressure solution or removing the system null space.
+ |      
+ |      print_stats: bool, Default=False
+ |          Print out solver iteration and timing counts per solver
+ |      
+ |      reinitialise: bool, Default=True,
+ |          Rebuild the system discretisation storage (location matrix/petsc mats &amp; vecs) and repopulate, if available,
+ |          the stokes voronio swarm before the system is solved.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |  
+ |  __abstractmethods__ = frozenset([])
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods inherited from underworld._stgermain.StgCompoundComponent:
+ |  
+ |  __new__(cls, *args, **kwargs)
+ |      Creates stgermain instances of underlying objects.
+ |      
+ |      The list of required instances is provided as a dictionary ('_objectsDict') on the class, 
+ |      with the entry key being the object name, and entry value being the object type.
+ |      
+ |      A second class data member ('_selfObjectName') provides the object name 
+ |      which should be considered the object 'self'.
+ |      
+ |      For example:
+ |      class Drawing(_stgermain.StgCompoundComponent):
+ |          _selfObjectName = "_dr"  # child should set this
+ |          _objectsDict = { "_cm": "lucColourMap",
+ |                           "_dr": None            }
+ |                           
+ |      Note that this example is for an abstract class ('Drawing'), so it does not define 
+ |      a type for '_dr', but instead defers to child classes to define the type of '_dr'.
+ |      
+ |      Args:
+ |          objectsDictOverrule (dict): If provided, this will overwrite any objects 
+ |                                      in the class level _objectDicts. Useful for
+ |                                      programatically modifying behaviour.
+ |          
+ |      
+ |      Returns:
+ |          New created instance of child class.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes inherited from underworld._stgermain.StgCompoundComponent:
+ |  
+ |  __metaclass__ = &lt;class 'underworld._stgermain._SetupClass'&gt;
+ |      This metaclass allows us to invoke a _setup method after the __init__ method.
+ |      Borrowed from:
+ |      http://stackoverflow.com/questions/22261763/in-python-is-it-possible-to-write-a-method-that-will-be-automatically-called-aft
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from underworld._stgermain.StgClass:
+ |  
+ |  __del__(self)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from underworld._stgermain.LeftOverParamsChecker:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+</pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="07_Visualisation.html" class="btn btn-neutral" title="Visualisation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="07_Visualisation.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+      <script src="../js/mathjax-local-config.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+
+</html>

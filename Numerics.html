@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Louis Moresi">
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Numerical Methods - The Underworld Geodynamics Modelling Code</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Numerical Methods";
+    var mkdocs_page_input_path = "Numerics.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> The Underworld Geodynamics Modelling Code</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="index.html">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="Geodynamics.html">Geodynamics</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="Numerics.html">Numerical Methods</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#numerical-methods-background">Numerical methods - background</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#description">Description</a></li>
+        
+            <li><a class="toctree-l3" href="#background">Background</a></li>
+        
+            <li><a class="toctree-l3" href="#implementation-and-parallelism">Implementation and parallelism</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="Practice.html">Practical Matters</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User's Manual</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="UserGuide/01_GettingStarted.html">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="UserGuide/02_TheMesh.html">TheMesh</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="UserGuide/03_Swarms.html">Swarms</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="UserGuide/04_Functions.html">Functions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="UserGuide/05_Systems.html">Systems</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="UserGuide/06_Utilities.html">Utilities</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="UserGuide/07_Visualisation.html">Visualisation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="UserGuide/08_StokesSolver.html">StokesSolver</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Underworld Resources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="http://www.underworldcode.org">UW2 website</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://github.com/underworldcode/underworld2">UW2 on Github</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://underworld2.readthedocs.io/en/latest/underworld.html">UW2 API docs</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://doi.org/10.5281/zenodo.1436039">Zenodo</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="mailto:anyone@underworldcode.org">Email us</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">The Underworld Geodynamics Modelling Code</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Numerical Methods</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="numerical-methods-background">Numerical methods - background</h2>
+<h3 id="description">Description</h3>
+<p>Underworld is a Lagrangian integration point finite element code. This is a modernization of the original particle-in-cell concept from the 1960s in which a structured mesh and an unstructured particle swarm co-exist. The mesh is used to solve diffusion-dominated parts of the problem and the particle swarm is used to track advected quantities. In the finite element context, the mapping from mesh to particles is through the usual basis functions of the elements and the mapping from particles to mesh is through the integration scheme used to build up the stiffness matrices etc.</p>
+<p>The applications of the method are mainly in modelling of complex fluids where very large strains occur but the material also has a memory of the entire strain / strain-rate history. In geosciences this occurs due to the visco-elasticity of rocks at lithospheric temperature and their tendency to develop fabric (lattice preferred orientation and stress/strain-dependent grain size). Problems with material interfaces which undergo severe distortion during the deformation are also naturally handled by this method provided there is no slip on the interface.</p>
+<h3 id="background">Background</h3>
+<p>The method has been published in detail in Moresi et al (2002, 2003)<sup id="fnref:PIC1"><a class="footnote-ref" href="#fn:PIC1" rel="footnote">1</a></sup>. These papers dealt exclusively with 2D applications but in recent years, we have introduced a number of improvements in the method to enable us to scale the problem to 3D. For example we developed a fast discrete Voronoi method to compute the integration weights of the particle-to-mesh mapping efficiently <sup id="fnref:Voronoi"><a class="footnote-ref" href="#fn:Voronoi" rel="footnote">2</a></sup>. We have also concentrated on extremely robust solvers / preconditioners which are necessary because the material variations and geometrical complexity are both large and unpredictable at the start of the simulation.</p>
+<p>The benefit of this approach is associated with the separation of the computational mesh from the swarm of points which track the history. This allows us to retain a much more structured computational mesh than the deformation / material history would otherwise allow. We can take full advantage of the most efficient geometrical multigrid solvers and there is no need to preserve structure during any remeshing operations we undertake (for example if we do need to track a free surface or an internal interface). Although there are several complexities introduced by enforcing this separation, we find that the benefits, for our particular class of problems, are significant.</p>
+<h3 id="implementation-and-parallelism">Implementation and parallelism</h3>
+<p>Underworld is implemented using the <a href="http://www.stgermainproject.org">StGermain</a> framework . This provides the essential infrastructure to manage i/o, meshes, particle swarms, finite element operations, in a parallel (domain decomposition, message passing) environment. The numerical solvers are based around the PETSc software suite which focuses on delivering good parallel scalability (up to thousands-of-cores). Our experience to date shows good scalability for thermal problems to 10000+ cores.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:PIC1">
+<p>Moresi, L. N., F. Dufour, and H. B. Muhlhaus (2003), A Lagrangian integration point finite element method for large deformation modeling of viscoelastic geomaterials, Journal of Computational Physics, 184(2), 476–497, doi:10.1016/S0021-9991(02)00031-1.</p>
+<p>L. Moresi, F. Dufour, and H. B. Muhlhaus. A Lagrangian integration point finite element method for large deformation modeling of viscoelastic geomaterials. Journal Of Computational Physics, 184:476–497, 2003.&#160;<a class="footnote-backref" href="#fnref:PIC1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:Voronoi">
+<p>Velić, M., D. A. May, and L. N. Moresi (2009), A fast robust algorithm for computing discrete voronoi diagrams, Journal of Mathematical Modelling and …, doi:10.1007/s10852-008-9097-6.&#160;<a class="footnote-backref" href="#fnref:Voronoi" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Practice.html" class="btn btn-neutral float-right" title="Practical Matters">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="Geodynamics.html" class="btn btn-neutral" title="Geodynamics"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="Geodynamics.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="Practice.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+      <script src="js/mathjax-local-config.js" defer></script>
+      <script src="search/main.js" defer></script>
+
+</body>
+</html>

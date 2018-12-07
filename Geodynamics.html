@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Louis Moresi">
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Geodynamics - The Underworld Geodynamics Modelling Code</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Geodynamics";
+    var mkdocs_page_input_path = "Geodynamics.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> The Underworld Geodynamics Modelling Code</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="index.html">Home</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="Geodynamics.html">Geodynamics</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#geodynamics-mathematical-background">Geodynamics - mathematical background</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="Numerics.html">Numerical Methods</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="Practice.html">Practical Matters</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User's Manual</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="UserGuide/01_GettingStarted.html">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="UserGuide/02_TheMesh.html">TheMesh</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="UserGuide/03_Swarms.html">Swarms</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="UserGuide/04_Functions.html">Functions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="UserGuide/05_Systems.html">Systems</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="UserGuide/06_Utilities.html">Utilities</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="UserGuide/07_Visualisation.html">Visualisation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="UserGuide/08_StokesSolver.html">StokesSolver</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Underworld Resources</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="http://www.underworldcode.org">UW2 website</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://github.com/underworldcode/underworld2">UW2 on Github</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://underworld2.readthedocs.io/en/latest/underworld.html">UW2 API docs</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://doi.org/10.5281/zenodo.1436039">Zenodo</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="mailto:anyone@underworldcode.org">Email us</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">The Underworld Geodynamics Modelling Code</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Geodynamics</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="geodynamics-mathematical-background">Geodynamics - mathematical background</h2>
+<p>The simplest template set of equations for solid-Earth dynamics cover mass, momentum and heat conservation in a highly viscous fluid allowing for additional effects due to elasticity and plasticity. The Stokes momentum equation neglects inertia but includes an additional term on the right hand side that represents stress history associated with an explicit treatment of viscoelasticity.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup> <sup id="fnref:2"><a class="footnote-ref" href="#fn:2" rel="footnote">2</a></sup> <sup id="fnref:3"><a class="footnote-ref" href="#fn:3" rel="footnote">3</a></sup></p>
+<div>
+<div class="MathJax_Preview">\begin{equation}
+    \tau_{ij,j} - p_{,i} = \rho\left( T, C, \cdots \right) - \tau^{\delta t}_{ij,j}
+    \label{eq:stokes-momentum}
+\end{equation}</div>
+<script type="math/tex; mode=display">\begin{equation}
+    \tau_{ij,j} - p_{,i} = \rho\left( T, C, \cdots \right) - \tau^{\delta t}_{ij,j}
+    \label{eq:stokes-momentum}
+\end{equation}</script>
+</div>
+<p>$ \tau $ is the deviatoric stress, <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> represents the pressure, <span><span class="MathJax_Preview">\rho</span><script type="math/tex">\rho</script></span> is density, <span><span class="MathJax_Preview">T</span><script type="math/tex">T</script></span> is the temperature, <span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span> is a concentration intended to represent changes in composition.</p>
+<p>At pressures in planetary interiors, silicate minerals are weakly compressible and this is generally considered as a perturbation to an incompressible flow ignoring bulk viscosity and only considering the long-term elastic resistance to volume change. For the purposes of explaining the formulation, the incompressible constraint equation on the velocity, <span><span class="MathJax_Preview">u</span><script type="math/tex">u</script></span> is sufficient.</p>
+<div>
+<div class="MathJax_Preview">\begin{equation}
+    u_{i,i} = 0
+    \label{eq:stokes-incompressibility}
+\end{equation}</div>
+<script type="math/tex; mode=display">\begin{equation}
+    u_{i,i} = 0
+    \label{eq:stokes-incompressibility}
+\end{equation}</script>
+</div>
+<p>The thermal evolution of the system expresses the balance between heat transport by fluid motion, thermal diffusion and internal heat generation. Additional terms can be included to account for heating due to viscous dissipation, for example, but do not change the overall character of the conservation equation.  </p>
+<div>
+<div class="MathJax_Preview">\begin{equation}
+    T_{,t} - u_i T_{,i} = \left(\kappa T_{,i} \right)_{,i} + Q_T
+    \label{eq:adv-diffusion-thermal}
+\end{equation}</div>
+<script type="math/tex; mode=display">\begin{equation}
+    T_{,t} - u_i T_{,i} = \left(\kappa T_{,i} \right)_{,i} + Q_T
+    \label{eq:adv-diffusion-thermal}
+\end{equation}</script>
+</div>
+<p>The most significant feature of this system is the spontaneous appearance of boundary layers where horizontal advection and vertical diffusion are approximately balanced. By contrast, compositional variations are characterised by a much smaller, usually negligible, rate of diffusion:</p>
+<div>
+<div class="MathJax_Preview">\begin{equation}
+    C_{,t} - u_i C_{,i} =  Q_C
+    \label{eq:adv-compositional}
+\end{equation}</div>
+<script type="math/tex; mode=display">\begin{equation}
+    C_{,t} - u_i C_{,i} =  Q_C
+    \label{eq:adv-compositional}
+\end{equation}</script>
+</div>
+<p>The thermal and compositional variations couple to the momentum equation through their effect on density. The Boussinesq approximation \citep{bous:1903}, accounts for the buoyancy forces while neglecting the associated volume change allowing us to assume incompressibility. If the non-diffusive, compositional variation represents a smoothly varying concentration, then the density can be written as <sup id="fnref:4"><a class="footnote-ref" href="#fn:4" rel="footnote">4</a></sup></p>
+<div>
+<div class="MathJax_Preview">\begin{equation}
+    \rho = \rho_0 (1-\alpha \Delta T) (1-\alpha_C \Delta C)
+\end{equation}</div>
+<script type="math/tex; mode=display">\begin{equation}
+    \rho = \rho_0 (1-\alpha \Delta T) (1-\alpha_C \Delta C)
+\end{equation}</script>
+</div>
+<p>In the case where C represents a state with discrete steps (e.g. a phase change or immiscible fluids), it is common to let <span><span class="MathJax_Preview">\rho_0</span><script type="math/tex">\rho_0</script></span> take discrete values and assume <span><span class="MathJax_Preview">\alpha_C=0</span><script type="math/tex">\alpha_C=0</script></span>.</p>
+<p>The final requirement is a constitutive relationship for \ref{eq:stokes-momentum} that links the stress to the velocity unknown. Rheology is one of the defining aspects of the dynamics of the mantle, particularly in the cooler parts of the upper boundary layer where elasticity, non-linearity, and brittle behaviour plays a significant role. A general constitutive law can be expressed as:</p>
+<div>
+<div class="MathJax_Preview">\begin{equation}
+    \frac{\dot{\tau}_{ij} }{\mu} +
+    \frac{\tau_{ij}}{\eta} +
+    \lambda \Lambda_{ijkl} \tau_{kl} =
+    \frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i}
+    \label{eq:viscoelasticplastic-const-law}
+\end{equation}</div>
+<script type="math/tex; mode=display">\begin{equation}
+    \frac{\dot{\tau}_{ij} }{\mu} +
+    \frac{\tau_{ij}}{\eta} +
+    \lambda \Lambda_{ijkl} \tau_{kl} =
+    \frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i}
+    \label{eq:viscoelasticplastic-const-law}
+\end{equation}</script>
+</div>
+<p>where <span><span class="MathJax_Preview">\mu</span><script type="math/tex">\mu</script></span> is the elastic shear modulus and <span><span class="MathJax_Preview">\eta</span><script type="math/tex">\eta</script></span> is the shear viscosity (both of which may vary with temperature and composition). <span><span class="MathJax_Preview">\Lambda</span><script type="math/tex">\Lambda</script></span> is a structural tensor that represents the orientation of the plastic deformation relative to the applied stress and <span><span class="MathJax_Preview">\lambda</span><script type="math/tex">\lambda</script></span> is a scalar multiplier that is computed to satisfy the stress conditions at yield <sup id="fnref:5"><a class="footnote-ref" href="#fn:5" rel="footnote">5</a></sup>. Typically, <span><span class="MathJax_Preview">\eta</span><script type="math/tex">\eta</script></span> varies by several tens of orders of magnitude over the typical temperature ranges expected between the Earth's surface and interior. The orientation tensor and the yield stress are usually modelled to include a simple damage evolution that relates to the work expended in deforming the material at yield.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Moresi, L. N., F. Dufour, and H. B. Muhlhaus (2002), Mantle convection modeling with viscoelastic/brittle lithosphere: Numerical methodology and plate tectonic modeling, Pure And Applied Geophysics, 159(10), 2335–2356, doi:10.1007/s00024-002-8738-3.&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Moresi, L. N., F. Dufour, and H. B. Muhlhaus (2003), A Lagrangian integration point finite element method for large deformation modeling of viscoelastic geomaterials, Journal of Computational Physics, 184(2), 476–497, doi:10.1016/S0021-9991(02)00031-1.&#160;<a class="footnote-backref" href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Farrington, R. J., L. N. Moresi, and F. A. Capitanio (2014), The role of viscoelasticity in subducting plates, Geochemistry, Geophysics, Geosystems, 15(11), 4291–4304, doi:10.1002/2014GC005507.&#160;<a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>van Keken, P. E., S. D. King, H. Schmeling, U. R. Christensen, D. Neumeister, and M. P. Doin (1997), A comparison of methods for the modeling of thermochemical convection, J. Geophys. Res., 102(B10), 22,477–22,495.&#160;<a class="footnote-backref" href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>L. Moresi, H. B. Muhlhaus, V. Lemiale, and D. A. May (2007), Incompressible viscous formulations for deformation and yielding of the lithosphere, Geological Society London Special Publications, 282(1), 457–472, doi:10.1144/SP282.19.&#160;<a class="footnote-backref" href="#fnref:5" rev="footnote" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Numerics.html" class="btn btn-neutral float-right" title="Numerical Methods">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="index.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="Numerics.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+      <script src="js/mathjax-local-config.js" defer></script>
+      <script src="search/main.js" defer></script>
+
+</body>
+</html>
